@@ -44,6 +44,7 @@ export const useArrows = (
   // function clears all arrows drawed by user
   function clearArrows() {
     setArrows([]);
+    setCustomArrows([]);
     setNewArrow(undefined);
   }
 

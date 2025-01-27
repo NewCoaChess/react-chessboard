@@ -432,6 +432,7 @@ const useArrows = (customArrows, areArrowsAllowed = true, onArrowsChange, custom
     // function clears all arrows drawed by user
     function clearArrows() {
         setArrows([]);
+        setCustomArrows([]);
         setNewArrow(undefined);
     }
     const drawNewArrow = (fromSquare, toSquare) => {
