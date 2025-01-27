@@ -422,6 +422,10 @@ const useArrows = (customArrows, areArrowsAllowed = true, onArrowsChange, custom
             //filter out arrows which starts and ends in the same square
             customArrows === null || customArrows === void 0 ? void 0 : customArrows.filter((arrow) => arrow[0] !== arrow[1]));
         }
+        else {
+            clearArrows();
+            setCustomArrows([]);
+        }
     }, [customArrows]);
     // callback when arrows changed after user interaction
     react.useEffect(() => {

@@ -30,6 +30,10 @@ export const useArrows = (
         customArrows?.filter((arrow) => arrow[0] !== arrow[1])
       );
     }
+    else {
+      clearArrows();
+      setCustomArrows([]);
+    }
   }, [customArrows]);
 
   // callback when arrows changed after user interaction
