@@ -9,7 +9,7 @@ export const useArrows = (
   areArrowsAllowed: boolean = true,
   onArrowsChange?: (arrows: Arrows) => void,
   customArrowColor?: string,
-  onArrowDraw?: (fromSquare: Square, toSquare: Square, color?: string) => void,
+  onArrowDraw?: (isNewArrowUnique: boolean,fromSquare: Square, toSquare: Square, color?: string) => void,
 ) => {
   // arrows passed programatically to `ChessBoard` as a react prop
   const [customArrowsSet, setCustomArrows] = useState<Arrows>([]);
@@ -53,7 +53,7 @@ export const useArrows = (
 
   const onArrowDrawEnd = (fromSquare: Square, toSquare: Square) => {
     if (fromSquare === toSquare || !areArrowsAllowed) return;
-    onArrowDraw?.(fromSquare, toSquare, customArrowColor);
+    
 
     // let arrowsCopy;
     const newArrow: Arrow = [fromSquare, toSquare, customArrowColor];
@@ -68,6 +68,7 @@ export const useArrows = (
     // add the newArrow to arrows array if it is unique
     if (isNewArrowUnique) {
       setCustomArrows([...customArrowsSet, newArrow]);
+      onArrowDraw?.(isNewArrowUnique, fromSquare, toSquare, customArrowColor);
       // arrowsCopy = [...arrows, newArrow];
     }
     // remove it from the board if we already have same arrow in arrows array
@@ -75,6 +76,7 @@ export const useArrows = (
       setCustomArrows(customArrowsSet.filter(([arrowFrom, arrowTo]) => {
         return !(arrowFrom === fromSquare && arrowTo === toSquare);
       }));
+      onArrowDraw?.(isNewArrowUnique, fromSquare, toSquare, customArrowColor);
     }
 
     setNewArrow(undefined);

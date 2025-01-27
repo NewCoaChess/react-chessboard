@@ -439,7 +439,6 @@ const useArrows = (customArrows, areArrowsAllowed = true, onArrowsChange, custom
     const onArrowDrawEnd = (fromSquare, toSquare) => {
         if (fromSquare === toSquare || !areArrowsAllowed)
             return;
-        onArrowDraw === null || onArrowDraw === void 0 ? void 0 : onArrowDraw(fromSquare, toSquare, customArrowColor);
         // let arrowsCopy;
         const newArrow = [fromSquare, toSquare, customArrowColor];
         const isInArrows = allBoardArrows.some(([arrowFrom, arrowTo]) => {
@@ -452,6 +451,7 @@ const useArrows = (customArrows, areArrowsAllowed = true, onArrowsChange, custom
         // add the newArrow to arrows array if it is unique
         if (isNewArrowUnique) {
             setCustomArrows([...customArrowsSet, newArrow]);
+            onArrowDraw === null || onArrowDraw === void 0 ? void 0 : onArrowDraw(isNewArrowUnique, fromSquare, toSquare, customArrowColor);
             // arrowsCopy = [...arrows, newArrow];
         }
         // remove it from the board if we already have same arrow in arrows array
@@ -459,6 +459,7 @@ const useArrows = (customArrows, areArrowsAllowed = true, onArrowsChange, custom
             setCustomArrows(customArrowsSet.filter(([arrowFrom, arrowTo]) => {
                 return !(arrowFrom === fromSquare && arrowTo === toSquare);
             }));
+            onArrowDraw === null || onArrowDraw === void 0 ? void 0 : onArrowDraw(isNewArrowUnique, fromSquare, toSquare, customArrowColor);
         }
         setNewArrow(undefined);
         // setArrows(arrowsCopy);
