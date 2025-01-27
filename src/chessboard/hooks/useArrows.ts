@@ -49,7 +49,6 @@ export const useArrows = (
     setNewArrow([fromSquare, toSquare, customArrowColor]);
   };
 
-  const allBoardArrows = [...arrows, ...customArrowsSet];
 
   const onArrowDrawEnd = (fromSquare: Square, toSquare: Square) => {
     if (fromSquare === toSquare || !areArrowsAllowed) return;
@@ -57,13 +56,9 @@ export const useArrows = (
 
     // let arrowsCopy;
     const newArrow: Arrow = [fromSquare, toSquare, customArrowColor];
-    const isInArrows = allBoardArrows.some(([arrowFrom, arrowTo]) => {
+    const isNewArrowUnique = !customArrowsSet.some(([arrowFrom, arrowTo]) => {
       return arrowFrom === fromSquare && arrowTo === toSquare;
     });
-    const isInCustomArrows = customArrowsSet.some(([arrowFrom, arrowTo]) => {
-      return arrowFrom === fromSquare && arrowTo === toSquare;
-    });
-    const isNewArrowUnique = !isInArrows && !isInCustomArrows;
 
     // add the newArrow to arrows array if it is unique
     if (isNewArrowUnique) {
@@ -80,11 +75,11 @@ export const useArrows = (
     }
 
     setNewArrow(undefined);
-    setArrows([]);
+    // setArrows(arrowsCopy);
   };
 
   return {
-    arrows: allBoardArrows,
+    arrows:customArrowsSet,
     newArrow,
     clearArrows,
     drawNewArrow,
