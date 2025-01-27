@@ -80,7 +80,7 @@ export const useArrows = (
     }
 
     setNewArrow(undefined);
-    // setArrows(arrowsCopy);
+    setArrows([]);
   };
 
   return {

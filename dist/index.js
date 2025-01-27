@@ -464,7 +464,7 @@ const useArrows = (customArrows, areArrowsAllowed = true, onArrowsChange, custom
             onArrowDraw === null || onArrowDraw === void 0 ? void 0 : onArrowDraw(isNewArrowUnique, fromSquare, toSquare, customArrowColor);
         }
         setNewArrow(undefined);
-        // setArrows(arrowsCopy);
+        setArrows([]);
     };
     return {
         arrows: allBoardArrows,
