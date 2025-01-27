@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { Square, Arrow } from "../types";
 type Arrows = Arrow[];
-export declare const useArrows: (customArrows?: Arrows, areArrowsAllowed?: boolean, onArrowsChange?: ((arrows: Arrows) => void) | undefined, customArrowColor?: string, onArrowDraw?: ((fromSquare: Square, toSquare: Square) => void) | undefined) => {
+export declare const useArrows: (customArrows?: Arrows, areArrowsAllowed?: boolean, onArrowsChange?: ((arrows: Arrows) => void) | undefined, customArrowColor?: string, onArrowDraw?: ((fromSquare: Square, toSquare: Square, color?: string) => void) | undefined) => {
     arrows: Arrow[];
     newArrow: Arrow | undefined;
     clearArrows: () => void;

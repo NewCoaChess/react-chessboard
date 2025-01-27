@@ -9,7 +9,7 @@ export const useArrows = (
   areArrowsAllowed: boolean = true,
   onArrowsChange?: (arrows: Arrows) => void,
   customArrowColor?: string,
-  onArrowDraw?: (fromSquare: Square, toSquare: Square) => void,
+  onArrowDraw?: (fromSquare: Square, toSquare: Square, color?: string) => void,
 ) => {
   // arrows passed programatically to `ChessBoard` as a react prop
   const [customArrowsSet, setCustomArrows] = useState<Arrows>([]);
@@ -53,28 +53,32 @@ export const useArrows = (
 
   const onArrowDrawEnd = (fromSquare: Square, toSquare: Square) => {
     if (fromSquare === toSquare || !areArrowsAllowed) return;
-    onArrowDraw?.(fromSquare, toSquare);
+    onArrowDraw?.(fromSquare, toSquare, customArrowColor);
 
-    let arrowsCopy;
+    // let arrowsCopy;
     const newArrow: Arrow = [fromSquare, toSquare, customArrowColor];
-
-    const isNewArrowUnique = allBoardArrows.every(([arrowFrom, arrowTo]) => {
-      return !(arrowFrom === fromSquare && arrowTo === toSquare);
+    const isInArrows = allBoardArrows.some(([arrowFrom, arrowTo]) => {
+      return arrowFrom === fromSquare && arrowTo === toSquare;
     });
+    const isInCustomArrows = customArrowsSet.some(([arrowFrom, arrowTo]) => {
+      return arrowFrom === fromSquare && arrowTo === toSquare;
+    });
+    const isNewArrowUnique = !isInArrows && !isInCustomArrows;
 
     // add the newArrow to arrows array if it is unique
     if (isNewArrowUnique) {
-      arrowsCopy = [...arrows, newArrow];
+      setCustomArrows([...customArrowsSet, newArrow]);
+      // arrowsCopy = [...arrows, newArrow];
     }
     // remove it from the board if we already have same arrow in arrows array
     else {
-      arrowsCopy = arrows.filter(([arrowFrom, arrowTo]) => {
+      setCustomArrows(customArrowsSet.filter(([arrowFrom, arrowTo]) => {
         return !(arrowFrom === fromSquare && arrowTo === toSquare);
-      });
+      }));
     }
 
     setNewArrow(undefined);
-    setArrows(arrowsCopy);
+    // setArrows(arrowsCopy);
   };
 
   return {
