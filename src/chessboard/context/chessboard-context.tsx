@@ -316,14 +316,14 @@ export const ChessboardProvider = forwardRef(
       getPositionObject(newPosition);
       // clear arrows
       clearArrows();
-
+      setCustomArrows([]);
       // clear timeout on unmount
       return () => {
         clearTimeout(previousTimeout);
       };
     }, [position]);
 
-    const { arrows, newArrow, clearArrows, drawNewArrow, onArrowDrawEnd } =
+    const { arrows, newArrow, clearArrows, drawNewArrow, onArrowDrawEnd, setCustomArrows } =
       useArrows(
         customArrows,
         areArrowsAllowed,

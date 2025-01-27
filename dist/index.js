@@ -434,7 +434,6 @@ const useArrows = (customArrows, areArrowsAllowed = true, onArrowsChange, custom
     // function clears all arrows drawed by user
     function clearArrows() {
         setArrows([]);
-        setCustomArrows([]);
         setNewArrow(undefined);
     }
     const drawNewArrow = (fromSquare, toSquare) => {
@@ -473,6 +472,7 @@ const useArrows = (customArrows, areArrowsAllowed = true, onArrowsChange, custom
         drawNewArrow,
         setArrows,
         onArrowDrawEnd,
+        setCustomArrows,
     };
 };
 
@@ -590,12 +590,13 @@ const ChessboardProvider = react.forwardRef(({ allowDragOutsideBoard = true, ani
         getPositionObject(newPosition);
         // clear arrows
         clearArrows();
+        setCustomArrows([]);
         // clear timeout on unmount
         return () => {
             clearTimeout(previousTimeout);
         };
     }, [position]);
-    const { arrows, newArrow, clearArrows, drawNewArrow, onArrowDrawEnd } = useArrows(customArrows, areArrowsAllowed, onArrowsChange, customArrowColor, onArrowDraw);
+    const { arrows, newArrow, clearArrows, drawNewArrow, onArrowDrawEnd, setCustomArrows } = useArrows(customArrows, areArrowsAllowed, onArrowsChange, customArrowColor, onArrowDraw);
     // handle drop position change
     function handleSetPosition(sourceSq, targetSq, piece, wasManualDropOverride) {
         // if dropped back down, don't do anything

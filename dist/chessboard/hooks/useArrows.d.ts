@@ -8,5 +8,6 @@ export declare const useArrows: (customArrows?: Arrows, areArrowsAllowed?: boole
     drawNewArrow: (fromSquare: Square, toSquare: Square) => void;
     setArrows: import("react").Dispatch<import("react").SetStateAction<Arrows>>;
     onArrowDrawEnd: (fromSquare: Square, toSquare: Square) => void;
+    setCustomArrows: import("react").Dispatch<import("react").SetStateAction<Arrows>>;
 };
 export {};
