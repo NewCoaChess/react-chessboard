@@ -390,6 +390,11 @@ export type ChessboardProps = {
    * @default true
    */
   snapToCursor?: boolean;
+  /**
+   * User function that is run when an arrow is drawn.
+   * @default () => {}
+   */
+  onArrowDraw?: (fromSquare: Square, toSquare: Square) => void;
 };
 
 export type ChessboardDnDProviderProps = {

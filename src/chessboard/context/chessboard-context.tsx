@@ -73,6 +73,7 @@ interface ChessboardProviderContext {
   onPromotionPieceSelect: RequiredChessboardProps["onPromotionPieceSelect"];
   onSparePieceDrop: ChessboardProps["onSparePieceDrop"];
   onSquareClick: RequiredChessboardProps["onSquareClick"];
+  onArrowDraw: RequiredChessboardProps["onArrowDraw"];
   promotionDialogVariant: RequiredChessboardProps["promotionDialogVariant"];
   showBoardNotation: RequiredChessboardProps["showBoardNotation"];
   snapToCursor: RequiredChessboardProps["snapToCursor"];
@@ -326,7 +327,8 @@ export const ChessboardProvider = forwardRef(
         customArrows,
         areArrowsAllowed,
         onArrowsChange,
-        customArrowColor
+        customArrowColor,
+        onArrowDraw
       );
 
     // handle drop position change

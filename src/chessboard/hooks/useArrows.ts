@@ -4,10 +4,12 @@ import { Square, Arrow } from "../types";
 type Arrows = Arrow[];
 
 export const useArrows = (
+
   customArrows?: Arrows,
   areArrowsAllowed: boolean = true,
   onArrowsChange?: (arrows: Arrows) => void,
-  customArrowColor?: string
+  customArrowColor?: string,
+  onArrowDraw?: (fromSquare: Square, toSquare: Square) => void,
 ) => {
   // arrows passed programatically to `ChessBoard` as a react prop
   const [customArrowsSet, setCustomArrows] = useState<Arrows>([]);
@@ -51,6 +53,7 @@ export const useArrows = (
 
   const onArrowDrawEnd = (fromSquare: Square, toSquare: Square) => {
     if (fromSquare === toSquare || !areArrowsAllowed) return;
+    onArrowDraw?.(fromSquare, toSquare);
 
     let arrowsCopy;
     const newArrow: Arrow = [fromSquare, toSquare, customArrowColor];
