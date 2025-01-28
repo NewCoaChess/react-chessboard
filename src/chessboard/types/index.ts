@@ -394,7 +394,7 @@ export type ChessboardProps = {
    * User function that is run when an arrow is drawn.
    * @default () => {}
    */
-  onArrowDraw?: (isNewArrowUnique: boolean, fromSquare: Square, toSquare: Square, color?: string) => void;
+  onArrowDraw?: (arrow: Arrow, isSameArrow: boolean, hasSameColor?: boolean) => void;
 };
 
 export type ChessboardDnDProviderProps = {

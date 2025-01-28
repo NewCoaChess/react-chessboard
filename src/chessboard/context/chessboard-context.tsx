@@ -171,7 +171,7 @@ export const ChessboardProvider = forwardRef(
       onSparePieceDrop = () => true,
       onSquareClick = () => {},
       onSquareRightClick = () => {},
-      onArrowDraw = () => {},
+      onArrowDraw = (arrow, isSameArrow, hasSameColor) => {},
       position = "start",
       promotionDialogVariant = "default",
       promotionToSquare = null,

@@ -9,7 +9,7 @@ export const useArrows = (
   areArrowsAllowed: boolean = true,
   onArrowsChange?: (arrows: Arrows) => void,
   customArrowColor?: string,
-  onArrowDraw?: (isNewArrowUnique: boolean,fromSquare: Square, toSquare: Square, color?: string) => void,
+  onArrowDraw?: (arrow: Arrow, isSameArrow: boolean, hasSameColor?: boolean) => void,
 ) => {
   // arrows passed programatically to `ChessBoard` as a react prop
   const [customArrowsSet, setCustomArrows] = useState<Arrows>([]);
@@ -60,22 +60,38 @@ export const useArrows = (
 
     // let arrowsCopy;
     const newArrow: Arrow = [fromSquare, toSquare, customArrowColor];
-    const isNewArrowUnique = !customArrowsSet.some(([arrowFrom, arrowTo]) => {
-      return arrowFrom === fromSquare && arrowTo === toSquare;
+    let isSameArrow: boolean = false;
+    let hasSameColor: boolean = false;
+    customArrowsSet.some((arrow) => {
+      if (arrow[0] === fromSquare && arrow[1] === toSquare) {
+        isSameArrow = true;
+        hasSameColor = arrow[2] === customArrowColor;
+        return true;
+      }
     });
 
     // add the newArrow to arrows array if it is unique
-    if (isNewArrowUnique) {
+    if (!isSameArrow) {
       setCustomArrows([...customArrowsSet, newArrow]);
-      onArrowDraw?.(isNewArrowUnique, fromSquare, toSquare, customArrowColor);
+      onArrowDraw?.(newArrow, isSameArrow, hasSameColor);
       // arrowsCopy = [...arrows, newArrow];
     }
     // remove it from the board if we already have same arrow in arrows array
     else {
-      setCustomArrows(customArrowsSet.filter(([arrowFrom, arrowTo]) => {
-        return !(arrowFrom === fromSquare && arrowTo === toSquare);
-      }));
-      onArrowDraw?.(isNewArrowUnique, fromSquare, toSquare, customArrowColor);
+      if (hasSameColor) {
+        setCustomArrows(customArrowsSet.filter(([arrowFrom, arrowTo]) => {
+          return !(arrowFrom === fromSquare && arrowTo === toSquare);
+        }));
+      }
+      else {
+        setCustomArrows(customArrowsSet.map((arrow) => {
+          if (arrow[0] === fromSquare && arrow[1] === toSquare) {
+            return [arrow[0], arrow[1], customArrowColor];
+          }
+          return arrow;
+        }));
+      }
+      onArrowDraw?.(newArrow, isSameArrow, hasSameColor);
     }
 
     setNewArrow(undefined);
