@@ -4894,7 +4894,7 @@ const Arrows = () => {
                 x: from.x + (dx * (r - ARROW_LENGTH_REDUCER)) / r,
                 y: from.y + (dy * (r - ARROW_LENGTH_REDUCER)) / r,
             };
-            return (jsxRuntime.jsxs(react.Fragment, { children: [jsxRuntime.jsx("marker", Object.assign({ id: `arrowhead-${i}`, markerWidth: "2", markerHeight: "2.5", refX: "1.25", refY: "1.25", orient: "auto" }, { children: jsxRuntime.jsx("polygon", { points: "0.3 0, 2 1.25, 0.3 2.5", fill: arrowColor !== null && arrowColor !== void 0 ? arrowColor : primaryArrowCollor }) })), jsxRuntime.jsx("line", { x1: from.x, y1: from.y, x2: end.x, y2: end.y, opacity: isArrowActive ? "0.5" : "0.65", stroke: arrowColor !== null && arrowColor !== void 0 ? arrowColor : primaryArrowCollor, strokeWidth: isArrowActive ? (0.9 * boardWidth) / 40 : boardWidth / 40, markerEnd: `url(#arrowhead-${i})` })] }, `${arrowStartField}-${arrowEndField}${isArrowActive ? "-active" : ""}`));
+            return (jsxRuntime.jsxs(react.Fragment, { children: [jsxRuntime.jsx("marker", Object.assign({ id: `arrowhead-${i}`, markerWidth: "2", markerHeight: "2.5", refX: "1.25", refY: "1.25", orient: "auto" }, { children: jsxRuntime.jsx("polygon", { points: "0.3 0, 2 1.25, 0.3 2.5", fill: arrowColor !== null && arrowColor !== void 0 ? arrowColor : primaryArrowCollor }) })), jsxRuntime.jsx("line", { x1: from.x, y1: from.y, x2: end.x, y2: end.y, opacity: isArrowActive ? "0.5" : "0.65", stroke: arrowColor !== null && arrowColor !== void 0 ? arrowColor : primaryArrowCollor, strokeWidth: isArrowActive ? (0.9 * boardWidth) / 40 : boardWidth / 40, markerEnd: `url(#arrowhead-${i})` })] }, `${arrowStartField}-${arrowEndField}-${arrowColor}-${isArrowActive ? "-active" : ""}`));
         }) })));
 };
 
