@@ -446,38 +446,7 @@ const useArrows = (customArrows, areArrowsAllowed = true, onArrowsChange, custom
             return;
         // let arrowsCopy;
         const newArrow = [fromSquare, toSquare, customArrowColor];
-        let isSameArrow = false;
-        let hasSameColor = false;
-        customArrowsSet.some((arrow) => {
-            if (arrow[0] === fromSquare && arrow[1] === toSquare) {
-                isSameArrow = true;
-                hasSameColor = arrow[2] === customArrowColor;
-                return true;
-            }
-        });
-        // add the newArrow to arrows array if it is unique
-        if (!isSameArrow) {
-            setCustomArrows([...customArrowsSet, newArrow]);
-            onArrowDraw === null || onArrowDraw === void 0 ? void 0 : onArrowDraw(newArrow, isSameArrow, hasSameColor);
-            // arrowsCopy = [...arrows, newArrow];
-        }
-        // remove it from the board if we already have same arrow in arrows array
-        else {
-            if (hasSameColor) {
-                setCustomArrows(customArrowsSet.filter(([arrowFrom, arrowTo]) => {
-                    return !(arrowFrom === fromSquare && arrowTo === toSquare);
-                }));
-            }
-            else {
-                setCustomArrows(customArrowsSet.map((arrow) => {
-                    if (arrow[0] === fromSquare && arrow[1] === toSquare) {
-                        return [arrow[0], arrow[1], customArrowColor];
-                    }
-                    return arrow;
-                }));
-            }
-            onArrowDraw === null || onArrowDraw === void 0 ? void 0 : onArrowDraw(newArrow, isSameArrow, hasSameColor);
-        }
+        onArrowDraw === null || onArrowDraw === void 0 ? void 0 : onArrowDraw(newArrow);
         setNewArrow(undefined);
         // setArrows(arrowsCopy);
     };
@@ -504,7 +473,7 @@ const ChessboardProvider = react.forwardRef(({ allowDragOutsideBoard = true, ani
             sourceSquare[1] === "2" &&
             targetSquare[1] === "1")) &&
         Math.abs(sourceSquare.charCodeAt(0) - targetSquare.charCodeAt(0)) <= 1);
-}, onPromotionPieceSelect = () => true, onSparePieceDrop = () => true, onSquareClick = () => { }, onSquareRightClick = () => { }, onArrowDraw = (arrow, isSameArrow, hasSameColor) => { }, position = "start", promotionDialogVariant = "default", promotionToSquare = null, showBoardNotation = true, showPromotionDialog = false, snapToCursor = true, }, ref) => {
+}, onPromotionPieceSelect = () => true, onSparePieceDrop = () => true, onSquareClick = () => { }, onSquareRightClick = () => { }, onArrowDraw = (arrow) => { }, position = "start", promotionDialogVariant = "default", promotionToSquare = null, showBoardNotation = true, showPromotionDialog = false, snapToCursor = true, }, ref) => {
     // position stored and displayed on board
     const [currentPosition, setCurrentPosition] = react.useState(convertPositionToObject(position));
     // calculated differences between current and incoming positions
