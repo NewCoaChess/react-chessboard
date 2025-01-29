@@ -65,7 +65,7 @@ export const Arrows = () => {
 
         return (
           <Fragment
-            key={`${arrowStartField}-${arrowEndField}${
+            key={`${arrowStartField}-${arrowEndField}-${arrowColor}-${
               isArrowActive ? "-active" : ""
             }`}
           >
