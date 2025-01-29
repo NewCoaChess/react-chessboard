@@ -67,7 +67,7 @@ export const useArrows = (
   };
 
   return {
-    arrows:customArrowsSet,
+    arrows:[...customArrowsSet],
     newArrow,
     clearArrows,
     drawNewArrow,

@@ -451,7 +451,7 @@ const useArrows = (customArrows, areArrowsAllowed = true, onArrowsChange, custom
         // setArrows(arrowsCopy);
     };
     return {
-        arrows: customArrowsSet,
+        arrows: [...customArrowsSet],
         newArrow,
         clearArrows,
         drawNewArrow,

@@ -2,7 +2,7 @@
 import { Square, Arrow } from "../types";
 type Arrows = Arrow[];
 export declare const useArrows: (customArrows?: Arrows, areArrowsAllowed?: boolean, onArrowsChange?: ((arrows: Arrows) => void) | undefined, customArrowColor?: string, onArrowDraw?: ((arrow: Arrow) => void) | undefined) => {
-    arrows: Arrows;
+    arrows: Arrow[];
     newArrow: Arrow | undefined;
     clearArrows: () => void;
     drawNewArrow: (fromSquare: Square, toSquare: Square) => void;
